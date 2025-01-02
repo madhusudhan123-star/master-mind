@@ -15,7 +15,6 @@ const Navbar = () => {
         localStorage.removeItem('userData');
         navigate('/');
     };
-    console.log(userData);
 
     return (
         <nav className="bg-white shadow-lg fixed w-full top-0 z-50">
@@ -24,13 +23,12 @@ const Navbar = () => {
                     {/* Logo Section */}
                     <div className="flex items-center">
                         <Link to="/" className="flex-shrink-0 flex items-center">
-                            <img className="h-12 w-auto" src={logo} alt="Logo" />
+                            <img className="h-8 w-auto" src={logo} alt="Logo" />
                         </Link>
-                    </div>
+                    </div>``
 
                     {/* Auth Section */}
                     <div className="flex items-center">
-
                         {userData ? (
                             <div className="flex items-center space-x-4">
                                 <Link to="/profile" className="flex items-center space-x-2">
@@ -59,17 +57,9 @@ const Navbar = () => {
                                     </div>
                                 ) : (
                                     <div>
-                                        <Link to="/about"
-                                            className=" text-black px-6 py-2 rounded-md text-sm font-medium"
-                                        >
-                                            About
-                                        </Link>
-                                        <Link
-                                            to="/contact"
-                                            className=" text-black px-6 py-2 rounded-md text-sm font-medium"
-                                        >
-                                            Contact
-                                        </Link>
+                                        <Link to="/" className=" text-black px-6 py-2 rounded-md text-sm font-medium">Home</Link>
+                                        <Link to="/about" className=" text-black px-6 py-2 rounded-md text-sm font-medium ">About</Link>
+                                        <Link to="/contact" className=" text-black px-6 py-2 rounded-md text-sm font-medium ">Contact</Link>
                                         <button
                                             onClick={() => setShowLogin(true)}
                                             className="bg-blue-500 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-blue-600 transition-colors"
