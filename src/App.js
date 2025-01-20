@@ -7,6 +7,10 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import Conform from "./pages/Conform";
+import Multiple from "./pages/Multiple";
 
 function App() {
   const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || "990220425416-j6s1cg42i5jiivr282jfhfj8l5te2ufv.apps.googleusercontent.com"; // Your Google Client ID
@@ -19,9 +23,13 @@ function App() {
           <main className="flex-grow pt-16">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/dash" element={<Dashboard />} />
+              <Route path="/con" element={<Conform />} />
+              <Route path='/multiple' element={<Multiple />} />
             </Routes>
           </main>
           <Footer />
