@@ -11,6 +11,9 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Conform from "./pages/Conform";
 import Multiple from "./pages/Multiple";
+import Selection from "./components/ExpertContent/Selection";
+import LearningOptions from "./components/ExpertContent/LearningOptions";
+import DeckDetails from "./components/flaskcards/DeckDetails";
 
 function App() {
   const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || "990220425416-j6s1cg42i5jiivr282jfhfj8l5te2ufv.apps.googleusercontent.com"; // Your Google Client ID
@@ -30,6 +33,9 @@ function App() {
               <Route path="/dash" element={<Dashboard />} />
               <Route path="/con" element={<Conform />} />
               <Route path='/multiple' element={<Multiple />} />
+              <Route path='/selection' element={<Selection />} />
+              <Route path='/learning-options' element={<LearningOptions />} />
+              <Route path="/deck/:deckId" element={<DeckDetails />} />
             </Routes>
           </main>
           <Footer />

@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BiHomeAlt, BiMessageDetail, BiHistory, BiFolder, BiGift, BiBook, BiMenu, BiX } from 'react-icons/bi';
 import HomeContent from '../components/dashbord/HomeContent';
 import ExpertContent from '../components/dashbord/ExpertContent';
 import RecentContent from '../components/dashbord/RecentContent';
 import MyStuffContent from '../components/dashbord/MyStuffContent';
-import PerksContent from '../components/dashbord/PerksContent';
+import FlashCardsContent from '../components/dashbord/FlashCardsContent';
 import LearningLabContent from '../components/dashbord/LearningLabContent';
 
 const Dashboard = () => {
-    const [activeSection, setActiveSection] = useState('Home');
+    const [activeSection, setActiveSection] = useState(() => {
+        return localStorage.getItem('activeSection') || 'Home';
+    });
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const userData = JSON.parse(localStorage.getItem('userData')) || { name: 'Guest' };
     
+    // Update localStorage when activeSection changes
+    useEffect(() => {
+        localStorage.setItem('activeSection', activeSection);
+    }, [activeSection]);
+
     const featureCards = [
         { title: '100 million+', subtitle: 'Expert solutions' },
         { title: '24/7', subtitle: 'Expert help' },
@@ -20,11 +27,11 @@ const Dashboard = () => {
 
     const sidebarItems = [
         { icon: <BiHomeAlt className="w-6 h-6" />, label: 'Home', content: <HomeContent /> },
-        { icon: <BiMessageDetail className="w-6 h-6" />, label: 'Ask an Expert', content: <ExpertContent /> },
-        { icon: <BiHistory className="w-6 h-6" />, label: 'Recent', content: <RecentContent /> },
-        { icon: <BiFolder className="w-6 h-6" />, label: 'My Stuff', content: <MyStuffContent /> },
-        { icon: <BiGift className="w-6 h-6" />, label: 'Perks', content: <PerksContent /> },
-        { icon: <BiBook className="w-6 h-6" />, label: 'Learning Lab', content: <LearningLabContent /> },
+        { icon: <BiMessageDetail className="w-6 h-6" />, label: 'Quick Preparation', content: <ExpertContent /> },
+        { icon: <BiHistory className="w-6 h-6" />, label: 'Your library', content: <RecentContent /> },
+        { icon: <BiFolder className="w-6 h-6" />, label: 'Study guide', content: <MyStuffContent /> },
+        { icon: <BiGift className="w-6 h-6" />, label: 'Flash cards', content: <FlashCardsContent /> },
+        { icon: <BiBook className="w-6 h-6" />, label: 'Practice test', content: <LearningLabContent /> },
     ];
 
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
@@ -64,7 +71,7 @@ const Dashboard = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 p-4 md:p-8 pt-20 md:pt-16 md:ml-64">
+            <div className="flex-1 p-4 md:p-8 pt-20 md:pt-16">
                 <div className="max-w-7xl mx-auto">
                     {sidebarItems.find(item => item.label === activeSection)?.content}
                 </div>
